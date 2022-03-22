@@ -24,7 +24,7 @@ class AddNumbersTests(unittest.TestCase):
     def test_returns_sum_of_no_chars(self):
         self.assertEqual(add(","), 0)
     
-    # This can be handled to ignore chars but not the requirement
+    # This can be handled to ignore chars but not a requirement
     def test_returns_sum_of_two_chars_and_numbers(self):
         self.assertEqual(add("a1, b2"), 0)
     
@@ -54,7 +54,19 @@ class AddNumbersTests(unittest.TestCase):
         self.assertEqual(add(",,,,,\n\n\n\n,2,n\n\n\n,,,,,4"), 6)
         self.assertEqual(add("     ,,,,\n\n\n\n\n,2       \n,\n,\n,     12,,,,,\n4"), 18)
 
+    # Tests such that a delimiter is specified in the string
+    def test_returns_sum_of_multiple_numbers_with_delimiter_semicolon(self):
+        self.assertEqual(add("//;\n1;2"), 3)
+
+    def test_returns_sum_of_multiple_numbers_with_delimiter_hash(self):
+        self.assertEqual(add("//#\n1#2"), 3)
     
+    def test_returns_sum_of_multiple_numbers_with_delimiter_asterisk(self):
+        self.assertEqual(add("//*\n1*2"), 3)
+    
+    # My code would not function well if the space is a delimiter, what if it is
+    def test_returns_sum_of_multiple_numbers_with_delimiter_space(self):
+        self.assertEqual(add("// \n1 2"), 3)
 
 if __name__ == "__main__":
     unittest.main()
