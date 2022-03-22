@@ -75,5 +75,20 @@ class AddNumbersTests(unittest.TestCase):
     def test_returns_sum_of_multiple_numbers_with_delimiter_newline(self):
         self.assertEqual(add("//\n\n1\n2"), 3)
 
+    # Tests for negative numbers
+    @pytest.mark.task(taskno=5)
+    def test_throws_an_exception_for_negative_numbers_in_string(self):
+        self.assertRaises(ValueError, add, "1,2,-3,4,5,6")
+
+    def test_throws_an_exception_for_multiple_negative_numbers_in_string(self):
+        self.assertRaises(ValueError, add, "1,2,-3,4,-5,-6")
+    
+    def test_throws_an_exception_with_message(self):
+        with pytest.raises(ValueError) as info:
+            add("1,2,-3,4,-5,-6")
+        assert str(info.value) == "negatives not allowed: [-3, -5, -6]"
+
+
+
 if __name__ == "__main__":
     unittest.main()

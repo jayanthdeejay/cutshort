@@ -8,9 +8,10 @@ def add(numbers):
         numbers = numbers[3:]
     else:
         delimiter = ','
+    
     numbers = numbers.replace("\n", ",")
     numbers = numbers.replace(delimiter, ",")
-
+    
     # Replace 2 or more consecutive commas with one
     # --
     pattern = re.compile(r'(,){2,}')
@@ -19,9 +20,18 @@ def add(numbers):
     
     numbers = numbers.split(",")
     sum = 0
+    negs = []
     for i in numbers:
+        i = i.strip()
         if not i:
             pass
-        if i.strip().isdigit():
-            sum += int(i.strip())
-    return sum
+        elif(i[0] == '-'):
+            negs.append(int(i))
+        elif i.isdigit():
+            sum += int(i)
+                
+    
+    if(negs):
+        raise ValueError("negatives not allowed: {}".format(negs))
+    else:
+        return sum
