@@ -55,6 +55,7 @@ class AddNumbersTests(unittest.TestCase):
         self.assertEqual(add("     ,,,,\n\n\n\n\n,2       \n,\n,\n,     12,,,,,\n4"), 18)
 
     # Tests such that a delimiter is specified in the string
+    @pytest.mark.task(taskno=4)
     def test_returns_sum_of_multiple_numbers_with_delimiter_semicolon(self):
         self.assertEqual(add("//;\n1;2"), 3)
 
@@ -67,6 +68,12 @@ class AddNumbersTests(unittest.TestCase):
     # My code would not function well if the space is a delimiter, what if it is
     def test_returns_sum_of_multiple_numbers_with_delimiter_space(self):
         self.assertEqual(add("// \n1 2"), 3)
+
+    def test_returns_sum_of_multiple_numbers_with_delimiter_tab(self):
+        self.assertEqual(add("//\t\n1\t2"), 3)
+
+    def test_returns_sum_of_multiple_numbers_with_delimiter_newline(self):
+        self.assertEqual(add("//\n\n1\n2"), 3)
 
 if __name__ == "__main__":
     unittest.main()
