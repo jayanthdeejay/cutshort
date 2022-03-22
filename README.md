@@ -1,5 +1,6 @@
 String Calculator TDD Kata
 --------------------------
+run `pip3 install -r requirements.txt`
 
 1.  Create a simple String calculator with a method signature:
 
