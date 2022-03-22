@@ -45,6 +45,15 @@ class AddNumbersTests(unittest.TestCase):
     def test_returns_sum_of_multiple_numbers_with_spaces(self):
         self.assertEqual(add("2, 5, 3, 32, 6, "), 48)
 
+    @pytest.mark.task(taskno=3)
+    def test_returns_sum_of_multiple_numbers_with_newlines_in_string(self):
+        self.assertEqual(add("1\n2,3"), 6)
+    
+    def test_returns_sum_of_multiple_numbers_with_arbitrary_newlines_commas_in_string(self):
+        self.assertEqual(add("1\n\n2\n\n,\n\n,\n\n4"), 7)
+        self.assertEqual(add(",,,,,\n\n\n\n,2,n\n\n\n,,,,,4"), 6)
+        self.assertEqual(add("     ,,,,\n\n\n\n\n,2       \n,\n,\n,     12,,,,,\n4"), 18)
+
     
 
 if __name__ == "__main__":
